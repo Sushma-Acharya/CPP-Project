@@ -23,15 +23,19 @@ int main()
 
     srand(time(0));
     int t1=0,t2=0,l=0;
-    t1=rand()%truth_count;
-    t1=rand()%truth_count;
-    l=rand()%lie_count;
+    while(t1==t2)
+    {
+        t1=rand()%truth_count;
+        t2=rand()%truth_count;
+        l=rand()%lie_count;
+    }
+    
 
     ifstream tr("truth.txt");
     ifstream li("lie.txt");
 
     string truth1, truth2, lie;
-    for(int i=0;i<=max(t2,l);i++)
+    for(int i=0;i<=max(t1,t2);i++)
     {
         string txt;
         getline(tr,txt);
@@ -44,9 +48,9 @@ int main()
             truth2=txt;
         }    
     }
-    for(int i=0;i<=l;i++)
+    for(int i=0;i<=max(t1,l);i++)
     {
-        getline(li,txt);
+        getline(li,lie);
     }
 
     int bullet=1;
